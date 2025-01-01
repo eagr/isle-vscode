@@ -1,0 +1,45 @@
+name: ISLE
+scopeName: source.isle
+fileTypes:
+  - isle
+  - ISLE
+patterns:
+  - name: comment.line.isle
+    match: ';.*$'
+  - name: comment.block.isle
+    begin: '\(;'
+    end: ';\)'
+
+  - name: keyword.other.isle
+    match: "\\b(\
+      pragma|\
+      type|nodebug|primitive|enum|\
+      decl|pure|multi|partial|\
+      rule|\
+      extractor|infallible|\
+      extern|constructor|const|\
+      convert|\
+      if-let|if|let)\\b"
+  - name: keyword.operator.isle
+    match: '\B@\B'
+
+  - name: constant.language.isle
+    match: '\b(true|false)\b'
+  - name: constant.numeric.isle
+    patterns:
+      - name: constant.numeric.hex.isle
+        match: '-?0[xX][0-9a-fA-F_]+\b'
+      - name: constant.numeric.octal.isle
+        match: '-?0[oO][0-7_]+\b'
+      - name: constant.numeric.binary.isle
+        match: '-?0[bB][01_]+\b'
+      - name: constant.numeric.decimal.isle
+        match: '-?[0-9][0-9_]*\b'
+  - name: constant.other.isle
+    match: '\$[^\s\(\);@]*'
+
+  - name: entity.name.function.isle
+    match: '(?<=\()([^\s\(\);@0-9-][^\s\(\);@]*)'
+
+  - name: variable.other.isle
+    match: '[^\s\(\);@0-9-][^\s\(\);@]*'
